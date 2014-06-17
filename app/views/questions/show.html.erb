@@ -17,3 +17,5 @@
 <p><%= @question.body %></p>
 
 <%= render 'answers/index', answers: @answers %>
+
+<p><%= link_to 'Post Your Answer', new_question_answer_path(@question)  %></p>

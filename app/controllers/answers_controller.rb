@@ -13,12 +13,13 @@ class AnswersController < ApplicationController
 
 	def new
     @answer = Answer.new
+    @question = Question.find(params[:question_id])
+    #Must specify which :id when at the nested level (eg, /questions/:question_id/answers/new)
 	end
 
 	def create
     @answer = Answer.new(answer_params)
     #Don't use .create, it will make the if @answer.save pass automatically (b/c it already saves)
-
     if @answer.save
 	  	redirect_to question_path(@answer.question)
 	  else
