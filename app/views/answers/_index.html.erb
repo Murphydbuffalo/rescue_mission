@@ -1,7 +1,7 @@
 <h2> Answers for <%= "#{@question.title}" %> </h2>
 
 <ul>
-	<% @answers.each do |a| %>
+	<% answers.each do |a| %>
     <li>
       <%= link_to "#{a.title}", answer_path(a) %> 
     </li>
