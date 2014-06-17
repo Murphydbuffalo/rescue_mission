@@ -3,7 +3,6 @@ require 'pry'
 class AnswersController < ApplicationController
 
 	def index
-		#@answers = Answer.all.where(question_id: params[:question_id])
 		#With nested routes you need to specify the parent id
 		@question = @answers.first.question
 	end
