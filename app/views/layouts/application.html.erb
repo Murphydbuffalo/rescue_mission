@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>RailsRescueMission</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>RailsRescueMission</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    
+    <h1> Questions, Answers n' Shit! </h1>
+      
+    <%= yield %>
 
-<%= yield %>
+    <div class='flash'>
+      <h4><%= flash[:notice] %></h4>
+    </div>
 
-</body>
+    <nav>
+      <p><a href='/'> Homeward Bound </a></p>
+      <p>
+        <a href='/questions/new'> Post A Question </a>
+      </p>
+    </nav>
+
+  </body>
 </html>
