@@ -1,0 +1,6 @@
+<h2><%= @question.title %></h2>
+<h4>
+  <%= "Posted by #{@question.user.name} at #{@question.created_at}" %>
+</h4>
+
+<p><%= @question.body %></p>
