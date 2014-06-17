@@ -1,0 +1,12 @@
+<h2> Questions </h2>
+
+<ul>
+	<% @questions.each do |q| %>
+    <li>
+      <%= link_to "#{q.title}", question_path(q) %> 
+    </li>
+    <li>
+      <%= "By #{q.user.name} at #{q.updated_at}" %>
+    </li>
+	<% end %>
+</ul>
