@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 
 	def index
-	  @questions = Question.all
+	  @questions = Question.all.order('created_at DESC')
 	end
 
 	def show
@@ -23,17 +23,30 @@ class QuestionsController < ApplicationController
 	end
 
 	def edit
-	  @question = Question.new
+	  @question = Question.find(params[:id])
+	  #Cannot say Question.new here, you're not creating, you're updating!
 	end
 
 	def update
 	  @question = Question.find(params[:id]).update(question_params)
-	  redirect_to "/questions/#{params[:id]}"
+	  if @question
+	  	redirect_to "/questions/#{params[:id]}"
+	  else
+	  	flash[:notice] = "We'll eventually put specific error messages here!"
+	    render :edit
+	  end
 	end
 
 	def destroy
-	  Question.find(params[:id]).destroy
-	  redirect_to '/'
+	  question = Question.find(params[:id]).destroy
+	  #must assign to variable for the verification below to work
+	  #b/c you can't .find a destroyed object
+	  if question.destroyed?
+	    redirect_to '/'
+	  else
+	  	flash[:notice] = "We'll eventually put specific error messages here!"
+	    render :index
+	  end
 	end
 
 
