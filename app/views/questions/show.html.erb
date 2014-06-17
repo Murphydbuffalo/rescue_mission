@@ -14,4 +14,6 @@
   <%= "Posted by #{@question.user.name} at #{@question.created_at}" %>
 </h4>
 
+<h4><%= link_to 'View Answers', question_answers_path(@question) %></h4>
+
 <p><%= @question.body %></p>

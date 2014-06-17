@@ -1,0 +1,18 @@
+<h2> Make Your Wisdom Writ </h2>
+
+<div class='forms'>
+  <%= form_for @answer do |f| %>
+  
+  <%= f.label :title %>:
+  <%= f.text_field :title %><br>
+
+  <%= f.label :body %>:
+  <%= f.text_field :body %><br>
+
+  <%= f.label :user_id %>:
+  <%= f.text_field :user_id %><br>
+
+  <%= f.submit %>
+
+  <% end %>
+</div>

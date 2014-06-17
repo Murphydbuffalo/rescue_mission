@@ -13,7 +13,8 @@ class QuestionsController < ApplicationController
 	end
 
 	def create
-	  @question = Question.create(question_params)
+	  @question = Question.new(question_params)
+
 	  if @question.save
 	  	redirect_to '/'
 	  else
@@ -28,9 +29,10 @@ class QuestionsController < ApplicationController
 	end
 
 	def update
-	  @question = Question.find(params[:id]).update(question_params)
-	  if @question
-	  	redirect_to "/questions/#{params[:id]}"
+	  @question = Question.find(params[:id])
+
+	  if @question.update(question_params)
+	  	redirect_to question_path(@question)
 	  else
 	  	flash[:notice] = "We'll eventually put specific error messages here!"
 	    render :edit
@@ -38,14 +40,13 @@ class QuestionsController < ApplicationController
 	end
 
 	def destroy
-	  question = Question.find(params[:id]).destroy
-	  #must assign to variable for the verification below to work
-	  #b/c you can't .find a destroyed object
-	  if question.destroyed?
-	    redirect_to '/'
+	  @question = Question.find(params[:id])
+
+	  if @question.destroy
+	    redirect_to root_path
 	  else
 	  	flash[:notice] = "We'll eventually put specific error messages here!"
-	    render :index
+	    render :show
 	  end
 	end
 

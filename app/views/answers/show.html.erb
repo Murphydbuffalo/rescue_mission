@@ -1,0 +1,17 @@
+<h2><%= @answer.title %></h2>
+
+<header>
+  <p>
+    <%= link_to 'Edit', edit_answer_path(@answer) %>
+  </p>
+
+  <p>
+    <%= link_to 'Delete', answer_path(@answer), method: :delete %>
+  </p>
+</header>
+
+<h4>
+  <%= "Posted by #{@answer.user.name} at #{@answer.created_at}" %>
+</h4>
+
+<p><%= @answer.body %></p>
