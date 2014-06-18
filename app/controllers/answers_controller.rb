@@ -19,6 +19,8 @@ class AnswersController < ApplicationController
 
 	def create
     @answer = Answer.new(answer_params)
+    @answer.user = User.find(session[:user_id])
+    @answer.question = Question.find(params[:question_id])
     #Don't use .create, it will make the if @answer.save pass automatically (b/c it already saves)
     if @answer.save
 	  	redirect_to question_path(@answer.question)
@@ -57,7 +59,7 @@ class AnswersController < ApplicationController
 	private
 
 	def answer_params
-	  params.require(:answer).permit(:title, :body, :user_id, :question_id)
+	  params.require(:answer).permit(:title, :body)
 	end
 
 end

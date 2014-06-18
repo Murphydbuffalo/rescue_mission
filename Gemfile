@@ -40,9 +40,12 @@ gem 'spring',        group: :development
 
 gem 'redcarpet'
 
+gem 'omniauth-facebook'
+
 group :development, :test do 
 	gem 'rspec-rails'
 	gem 'capybara'
 	gem 'pry-rails'
+	gem 'dotenv-rails'
 end
 
