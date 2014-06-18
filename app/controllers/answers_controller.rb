@@ -18,16 +18,16 @@ class AnswersController < ApplicationController
 	end
 
 	def create
-    @answer = Answer.new(answer_params)
-    @answer.user = User.find(session[:user_id])
-    @answer.question = Question.find(params[:question_id])
-    #Don't use .create, it will make the if @answer.save pass automatically (b/c it already saves)
-    if @answer.save
-	  	redirect_to question_path(@answer.question)
-	  else
-	  	flash[:notice] = "We'll eventually put specific error messages here!"
-	    render :new
-	  end
+	    @answer = Answer.new(answer_params)
+	    @answer.user = User.find(session[:user_id])
+	    @answer.question = Question.find(params[:question_id])
+	    #Don't use .create, it will make the if @answer.save pass automatically (b/c it already saves)
+	    if @answer.save
+		  	redirect_to question_path(@answer.question)
+		  else
+		  	flash[:notice] = "We'll eventually put specific error messages here!"
+		    render :new
+		  end
 	end
 
 	def edit
@@ -59,7 +59,7 @@ class AnswersController < ApplicationController
 	private
 
 	def answer_params
-	  params.require(:answer).permit(:title, :body)
+	  params.require(:answer).permit(:title, :body, :favorite?)
 	end
 
 end

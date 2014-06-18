@@ -4,6 +4,11 @@
 
 	<ul>
 		<% answers.each do |a| %>
+
+	    <% if a.favorite? %>
+ 				<h3> Dis Da Best Right Herr </h3>
+	    <% end %>
+
 	    <li>
 	      <%= link_to "#{a.title}", answer_path(a) %> 
 	    </li>
@@ -15,6 +20,11 @@
 	    <li>
 	      <%= a.body %>
 	    </li>
+	      <% if session[:user_id] == @question.user_id %>
+	        <li>
+	          <%= link_to 'Make Favorite!', edit_answer_path(a) %>
+	        </li>
+	      <% end %>
 		<% end %>
 	</ul>
 <% else %>
